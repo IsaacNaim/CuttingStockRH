@@ -49,6 +49,7 @@ total = multiply_and_sum(sorted_number_counts)
 print("Stud_2_4_12_combined.txt file")
 print("Sum of all numbers: "+str(round(total,2)))
 print("Sum of all numbers minutes with 0.125 inch blade cut: "+str(round(totalwithbladecuts,2)))
+print_sorted_counts(sorted_number_counts)
 # Example usage
 file_path = 'Stud_2_6_12_combined.txt'  # Replace with your file path
 numbers = read_decimal_numbers(file_path)
@@ -60,3 +61,4 @@ total = multiply_and_sum(sorted_number_counts)
 print("Stud_2_6_12_combined.txt file")
 print("Sum of all numbers: "+str(round(total,2)))
 print("Sum of all numbers minutes with 0.125 inch blade cut: "+str(round(totalwithbladecuts,2)))
+print_sorted_counts(sorted_number_counts)
