@@ -508,12 +508,19 @@ if __name__ == '__main__':
 
 
   def main(infile_name: Optional[str] = typer.Argument(None)):
-
+    
     if infile_name:
       child_rolls = get_data(infile_name)
     else:
       child_rolls = gen_data(3)
-    parent_rolls = [[10, 120]] # 10 doesn't matter, itls not used at the moment
+    child_rolls = [
+    [100, 4],    # 100 pieces of 2ft
+    [20, 7],   # 20 pieces of 3.5ft
+    [30, 8],     # 30 pieces of 4ft
+    [60, 10],     # 60 pieces of 5ft
+    [20, 14]      # 20 pieces of 7ft
+]
+    parent_rolls = [[10, 192]] # 10 doesn't matter, itls not used at the moment
 
     consumed_big_rolls = StockCutter1D(child_rolls, parent_rolls, output_json=False, large_model=False)
     typer.echo(f"{consumed_big_rolls}")
