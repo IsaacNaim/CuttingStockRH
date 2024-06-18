@@ -1,3 +1,11 @@
+import pandas as pd
+import re
+from collections import defaultdict
+global stud_2x4_counts_fromtxtfiles
+global stud_2x6_counts_fromtxtfiles 
+stud_2x4_counts_fromtxtfiles = {}
+stud_2x6_counts_fromtxtfiles = {}
+
 def read_decimal_numbers(file_path):
     with open(file_path, 'r') as file:
         content = file.read()
@@ -43,22 +51,22 @@ file_path = 'Stud_2_4_12_combined.txt'  # Replace with your file path
 numbers = read_decimal_numbers(file_path)
 number_counts = count_numbers(numbers)
 sorted_number_counts_withbladecuts = sort_counts(number_counts)
-sorted_number_counts = sort_counts_old(number_counts)
+stud_2x4_counts_fromtxtfiles = sort_counts_old(number_counts)
 totalwithbladecuts = multiply_and_sum(sorted_number_counts_withbladecuts)
-total = multiply_and_sum(sorted_number_counts)
+total = multiply_and_sum(stud_2x4_counts_fromtxtfiles)
 print("Stud_2_4_12_combined.txt file")
 print("Sum of all numbers: "+str(round(total,2)))
 print("Sum of all numbers minutes with 0.125 inch blade cut: "+str(round(totalwithbladecuts,2)))
-print_sorted_counts(sorted_number_counts)
+print_sorted_counts(stud_2x4_counts_fromtxtfiles)
 # Example usage
 file_path = 'Stud_2_6_12_combined.txt'  # Replace with your file path
 numbers = read_decimal_numbers(file_path)
 number_counts = count_numbers(numbers)
 sorted_number_counts_withbladecuts = sort_counts(number_counts)
-sorted_number_counts = sort_counts_old(number_counts)
+stud_2x6_counts_fromtxtfiles = sort_counts_old(number_counts)
 totalwithbladecuts = multiply_and_sum(sorted_number_counts_withbladecuts)
-total = multiply_and_sum(sorted_number_counts)
+total = multiply_and_sum(stud_2x6_counts_fromtxtfiles)
 print("Stud_2_6_12_combined.txt file")
 print("Sum of all numbers: "+str(round(total,2)))
 print("Sum of all numbers minutes with 0.125 inch blade cut: "+str(round(totalwithbladecuts,2)))
-print_sorted_counts(sorted_number_counts)
+print_sorted_counts(stud_2x6_counts_fromtxtfiles)
