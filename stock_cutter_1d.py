@@ -8,7 +8,7 @@ from ortools.linear_solver import pywraplp
 from math import ceil
 from random import randint
 import json
-from read_lengths import get_data
+from functions.read_lengths import get_data
 import typer
 from typing import Optional
 
