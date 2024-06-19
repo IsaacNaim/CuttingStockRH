@@ -1,4 +1,6 @@
 from functions.data_processor import ExcelDataProcessor, TextDataProcessor
+from functions.dictionary_comparator import DictionaryComparator
+from functions.excel_output_generator import generate_excel_output
 
 def main():
     # Example usage for .xlsx file
@@ -18,10 +20,24 @@ def main():
     # Example usage for .txt files
     txt_file_path_2x4 = 'inputfiles/Stud_2_4_12_combined.txt'  # Replace with your file path
     txt_processor = TextDataProcessor()
-    txt_processor.process_txt_file(txt_file_path_2x4)
+    text_counts_2x4 =  txt_processor.process_txt_file(txt_file_path_2x4)
 
     txt_file_path_2x6 = 'inputfiles/Stud_2_6_12_combined.txt'  # Replace with your file path
-    txt_processor.process_txt_file(txt_file_path_2x6)
+    text_counts_2x6 = txt_processor.process_txt_file(txt_file_path_2x6)
+
+    # Compare dictionaries and visualize
+    comparator_2x4 = DictionaryComparator(stud_2x4_counts, text_counts_2x4, "Excel Stud 2X4", "Text Stud 2X4")
+    common_keys_2x4, unique_to_dict1_2x4, unique_to_dict2_2x4, common_counts_2x4 = comparator_2x4.compare_dictionaries()
+    comparator_2x4.plot_bar_chart(common_counts_2x4)
+
+    comparator_2x6 = DictionaryComparator(stud_2x6_counts, text_counts_2x6, "Excel Stud 2X6", "Text Stud 2X6")
+    common_keys_2x6, unique_to_dict1_2x6, unique_to_dict2_2x6, common_counts_2x6 = comparator_2x6.compare_dictionaries()
+    comparator_2x6.plot_bar_chart(common_counts_2x6)
+    
+    
+    # Call function to generate Excel output
+    generate_excel_output(stud_2x4_counts, stud_2x6_counts, text_counts_2x4, text_counts_2x6)
+
 
 if __name__ == "__main__":
     main()

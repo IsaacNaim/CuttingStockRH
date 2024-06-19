@@ -66,7 +66,7 @@ class ExcelDataProcessor(DataProcessor):
         return stud_2x4_counts, stud_2x6_counts
 
 class TextDataProcessor(DataProcessor):
-    def read_decimal_numbers(self, file_path):
+    def process_txt_file(self, file_path):
         with open(file_path, 'r') as file:
             content = file.read()
         
@@ -76,14 +76,13 @@ class TextDataProcessor(DataProcessor):
         # Convert the split strings to floats
         numbers = [float(num) for num in numbers_str]
         
-        return numbers
-
-    def process_txt_file(self, file_path):
-        numbers = self.read_decimal_numbers(file_path)
-        number_counts = self.count_numbers(numbers)
-        sorted_number_counts = self.sort_counts(number_counts)
-        total = self.multiply_and_sum(sorted_number_counts)
+        # Count occurrences of each number
+        counts = {}
+        for number in numbers:
+            if number in counts:
+                counts[number] += 1
+            else:
+                counts[number] = 1
+        return counts
         
-        print(f"{file_path} file")
-        print("Sum of all numbers: " + str(round(total, 2)))
-        self.print_sorted_counts(sorted_number_counts)
+
